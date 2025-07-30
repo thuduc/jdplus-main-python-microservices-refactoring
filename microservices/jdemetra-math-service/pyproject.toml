@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jdemetra-math-service"
+version = "0.1.0"
+description = "Mathematical operations service for JDemetra+"
+readme = "README.md"
+authors = [
+    {name = "JDemetra+ Team"},
+]
+license = {text = "EUPL-1.2"}
+requires-python = ">=3.12"
+dependencies = [
+    "grpcio>=1.59",
+    "grpcio-tools>=1.59",
+    "numpy>=2.0",
+    "scipy>=1.12",
+    "numba>=0.59",
+    "jdemetra-common @ file:../jdemetra-common",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=2.0",
+    "black>=22.0",
+    "mypy>=0.950",
+]

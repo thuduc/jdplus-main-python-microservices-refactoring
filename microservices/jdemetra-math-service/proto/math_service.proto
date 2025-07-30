@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package jdemetra.math;
+
+// Matrix message
+message Matrix {
+    repeated double data = 1;  // Row-major order
+    int32 rows = 2;
+    int32 cols = 3;
+}
+
+// Vector message
+message Vector {
+    repeated double data = 1;
+}
+
+// Polynomial message
+message Polynomial {
+    repeated double coefficients = 1;  // From highest to lowest degree
+}
+
+// Matrix multiplication request
+message MatrixMultiplyRequest {
+    Matrix a = 1;
+    Matrix b = 2;
+}
+
+// Matrix multiplication response
+message MatrixMultiplyResponse {
+    Matrix result = 1;
+}
+
+// Matrix inverse request
+message MatrixInverseRequest {
+    Matrix matrix = 1;
+}
+
+// Matrix inverse response
+message MatrixInverseResponse {
+    Matrix result = 1;
+    double condition_number = 2;
+}
+
+// Polynomial roots request
+message PolynomialRootsRequest {
+    Polynomial polynomial = 1;
+}
+
+// Complex number
+message ComplexNumber {
+    double real = 1;
+    double imag = 2;
+}
+
+// Polynomial roots response
+message PolynomialRootsResponse {
+    repeated ComplexNumber roots = 1;
+}
+
+// Linear solve request (Ax = b)
+message LinearSolveRequest {
+    Matrix a = 1;
+    Vector b = 2;
+}
+
+// Linear solve response
+message LinearSolveResponse {
+    Vector x = 1;
+    double residual_norm = 2;
+}
+
+// Eigenvalue decomposition request
+message EigenDecompositionRequest {
+    Matrix matrix = 1;
+    bool compute_eigenvectors = 2;
+}
+
+// Eigenvalue decomposition response
+message EigenDecompositionResponse {
+    repeated ComplexNumber eigenvalues = 1;
+    Matrix eigenvectors = 2;  // Optional, only if requested
+}
+
+// SVD request
+message SVDRequest {
+    Matrix matrix = 1;
+    bool full_matrices = 2;
+}
+
+// SVD response
+message SVDResponse {
+    Matrix u = 1;
+    Vector singular_values = 2;
+    Matrix vt = 3;
+}
+
+// Math service definition
+service MathService {
+    // Matrix operations
+    rpc MultiplyMatrices(MatrixMultiplyRequest) returns (MatrixMultiplyResponse);
+    rpc InvertMatrix(MatrixInverseRequest) returns (MatrixInverseResponse);
+    
+    // Polynomial operations
+    rpc FindPolynomialRoots(PolynomialRootsRequest) returns (PolynomialRootsResponse);
+    
+    // Linear algebra
+    rpc SolveLinearSystem(LinearSolveRequest) returns (LinearSolveResponse);
+    rpc ComputeEigenDecomposition(EigenDecompositionRequest) returns (EigenDecompositionResponse);
+    rpc ComputeSVD(SVDRequest) returns (SVDResponse);
+}

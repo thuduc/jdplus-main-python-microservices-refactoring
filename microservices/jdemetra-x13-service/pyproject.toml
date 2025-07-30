@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jdemetra-x13-service"
+version = "0.1.0"
+description = "X-13ARIMA-SEATS seasonal adjustment service for JDemetra+"
+readme = "README.md"
+authors = [
+    {name = "JDemetra+ Team"},
+]
+license = {text = "EUPL-1.2"}
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.104",
+    "uvicorn>=0.24",
+    "pydantic>=2.0",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "statsmodels>=0.14",
+    "x13binary>=1.1",
+    "celery>=5.3",
+    "redis>=5.0",
+    "jdemetra-common @ file:../jdemetra-common",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=2.0",
+    "httpx>=0.25",
+    "black>=22.0",
+    "mypy>=0.950",
+]
