@@ -8,7 +8,7 @@ This POC is to evaluate Claude Code (an agentic coding tool from Anthropic: http
 * Step 2 - developer verifies the refactoring plan and modifies the plan (or engage with Claude Code to modify the plan) if needed.
 * Step 3 - use this refactoring plan (see MICROSERVICES_REFACTORING_PLAN.md) with Claude Code (together with Claude Opus 4 LLM, known as the most advanded model for agentic coding tasks) to implement all tasks in all phases defined in the plan.
 
-The Python microservices refactoring effort took Claude Code about 2 hours to complete. Claude Code created 1 common Python library and 8 microservices. The library and 8 microservices reside under microservices folder.
+The Python microservices refactoring effort took Claude Code about 2 hours to complete. Claude Code created 1 common Python library and 8 microservices. The library and 8 microservices reside under microservices/ folder.
 
 Claude Code provided the following optional infrastructure tasks that could be implemented later, depending on the targeted compute (in our example, Kubernetes is the proposed compute):
   - API Gateway - Request routing, authentication, rate limiting
