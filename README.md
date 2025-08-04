@@ -1,16 +1,19 @@
-# Proof-of-concept: Refactor existing Python codebase into microservices using Claude Code
-JDemetra+ (toolkit for seasonal adjustment and time series analysis) Python source repo is located at https://github.com/thuduc/jdplus-main-java2python
+## GenAI Proof of Concept: refactor existing Python codebase into microservices
+The purpose of this proof of concept is to find out if an LLM can take an existing complex Python codebase and refactor it into microservices. The project we will be using for this PoC is the JDemetra+ Python version of the project: https://github.com/thuduc/jdplus-main-java2python
 
-This POC is to evaluate Claude Code (an agentic coding tool from Anthropic: https://www.anthropic.com/claude-code) for its ability to refactor an existing Python codebase into a set of modular microservices.
+### LLM & AI Tool
+* LLM used: Claude Opus 4 (best coding LLM) - https://www.anthropic.com/claude/opus
+* AI tool used: Claude Code (best coding CLI due to its integration with Clause 4 LLMs) - https://www.anthropic.com/claude-code
 
-#### Conversion Process: 
-* Step 1 - use a reasoning LLM that's able to analyze an existing code repository, then put together a comprehensive refactoring plan to refactor the entire project's codebase into microservices. We used Anthropic's Claude Opus 4 LLM for our reasoning LLM. We chose Opus 4 over OpenAI's ChatGPT o3 (advanded reasoning) and Google Gemini 2.5 Pro (reasoning) due to its advanced ability to analyze code.
-* Step 2 - developer verifies the refactoring plan and modifies the plan (or engage with Claude Code to modify the plan) if needed.
-* Step 3 - use this refactoring plan (see MICROSERVICES_REFACTORING_PLAN.md) with Claude Code (together with Claude Opus 4 LLM, known as the most advanded model for agentic coding tasks) to implement all tasks in all phases defined in the plan.
+### Conversion Process: 
+* Step 1 - use Claude Code (together with Opus 4 LLM) to analyze an existing project's codebase, then ask it to put together a comprehensive refactoring plan to refactor into microservices.
+* Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process until the plan is ready.
+* Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
-The Python microservices refactoring effort took Claude Code about 2 hours to complete. Claude Code created 1 common Python library and 8 microservices. The library and 8 microservices reside under microservices/ folder.
-
-Claude Code provided the following optional infrastructure tasks that could be implemented later, depending on the targeted compute (in our example, Kubernetes is the proposed compute):
+### Conversion Results
+* The refactoring effort took Claude Code about 2 hours to complete
+* The original codebase was refactored into 8 microservices, each with its own Dockerfile. These microservices reside under microservices/ folder.
+* Claude Code also provided the following optional infrastructure tasks that could be implemented later, depending on the targeted compute (in our example, Kubernetes is the proposed compute):
   - API Gateway - Request routing, authentication, rate limiting
   - Service Registry - Service discovery and health checking
   - Inter-service Communication - Set up message queues (RabbitMQ/Kafka)
