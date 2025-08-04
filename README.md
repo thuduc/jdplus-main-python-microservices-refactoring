@@ -10,7 +10,7 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
 * Step 2 - developer verifies the refactoring plan and modifies the plan as needed. Developer could use Claude Code and iterate through this process until the plan is ready.
 * Step 3 - use this refactoring plan (see [MICROSERVICES_REFACTORING_PLAN.md](MICROSERVICES_REFACTORING_PLAN.md)) in Claude Code (together with Claude Opus 4 LLM) to implement all phases in the plan.
 
-### Conversion Results
+### PoC Results
 * The refactoring effort took Claude Code about 2 hours to complete
 * The original codebase was refactored into 8 microservices, each with its own Dockerfile. These microservices reside under microservices/ folder.
 * Claude Code also provided the following optional infrastructure tasks that could be implemented later, depending on the targeted compute (in our example, Kubernetes is the proposed compute):
@@ -21,6 +21,10 @@ The purpose of this proof of concept is to find out if an LLM can take an existi
   - CI/CD Pipelines - Automated testing and deployment
   - Integration Tests - Cross-service testing
   - Monitoring & Observability - Prometheus, Grafana, Jaeger setup
+
+### PoC Assessment
+* See [POC_ASSESSMENT.md](POC_ASSESSMENT.md) for detailed assessment of the generated refactoring implementation plan and also the refactoring implementation.
+* We manually confirmed these findings. However, the implementation plan assessment from the LLM is misleading because this codebase is a toolkit, so not all functionality can be turned into microservices. We would assess the implementation plan at 90+ percentage. Note that all tests passed after refactoring. See [TEST_SUMMARY.md](TEST_SUMMARY.md)
 
 ## All prompts issued to Claude Code
 The complete list of prompts issued to Clause Code is listed below:
